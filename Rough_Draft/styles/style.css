@@ -1,0 +1,58 @@
+html, body {
+    padding: 5px;
+ }
+
+ body {
+     display: grid;
+     grid-template-columns: 1fr 1fr; 
+     grid-auto-rows: minmax(5px, auto); /* add rows for our header/footer */
+     grid-template-areas: "header header header"  "description description description" "surveybuttons surveybuttons surveybuttons" "mappanel contentpanel ." "footer . .";
+     justify-content: center;
+     background-color: rgb(255, 255, 255);
+     color:rgba(0, 0, 0, 0.959);
+ }
+
+header{
+    grid-area: header;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.description{
+    grid-area: description;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+    border: 5px solid #5E6472;
+    margin: .5rem;
+}
+
+.surveybuttons{
+    grid-area: surveybuttons;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin: .5rem;
+}
+
+#map{
+    height:80vh;
+    grid-area: mappanel;
+    border-radius: 5px;
+    border: 2px solid #5E6472;
+} 
+
+#contents{
+    grid-area: contentpanel;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+footer{
+    grid-area: footer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
