@@ -50,6 +50,7 @@ header{
     grid-area: contentpanel;
     display:grid;
     grid-template-columns: repeat(2, 1fr);
+    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 
 footer{
