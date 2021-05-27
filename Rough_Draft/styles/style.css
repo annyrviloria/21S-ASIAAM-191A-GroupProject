@@ -1,5 +1,6 @@
 html, body {
-    padding: 5px;
+    padding: 8px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  }
 
  body {
@@ -17,16 +18,17 @@ header{
     justify-content: center;
     text-align: center;
     background-color: rgb(255, 255, 255);
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: x-large;
 }
 
 .description{
     grid-area: description;
     justify-content: center;
     text-align: center;
-    width: 100%;
+    font-size:larger;
+    width: 99%;
     border-radius: 5px;
-    border: 5px solid #5E6472;
+    border: 3px solid #496197;
     margin: .5rem;
 }
 
@@ -49,7 +51,7 @@ header{
     display:grid;
     grid-template-areas: "box1" "box2" "box3";
     grid-template-rows: repeat(1, 200px);
-    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
+    /*overflow-y:scroll;  adds a vertical scroll-bar to this div */
     }
 
 #box1{
@@ -68,12 +70,11 @@ header{
 }
 
 button{
-    background-color: rgba(212, 212, 212, 0.621);
+    background-color: rgba(255, 255, 255, 0.621);
     font-size: 20px;
     border-radius: 5%;
 }
 
 footer{
     grid-area: footer;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
