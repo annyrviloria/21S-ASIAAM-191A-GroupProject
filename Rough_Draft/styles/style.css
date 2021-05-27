@@ -67,6 +67,12 @@ header{
     overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 
+button{
+    background-color: rgba(212, 212, 212, 0.621);
+    font-size: 20px;
+    border-radius: 5%;
+}
+
 footer{
     grid-area: footer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
