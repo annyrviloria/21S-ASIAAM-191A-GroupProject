@@ -32,7 +32,7 @@ function createButtons(lat,lng,title){
         newButton.setAttribute("lat",lat); // sets the latitude 
         newButton.setAttribute("lng",lng); // sets the longitude 
         newButton.addEventListener('click', function(){
-            map.flyTo([lat,lng]); //this is the flyTo from Leaflet
+            map.flyTo([lat,lng],10); //this is the flyTo from Leaflet
         })
         const SpaceForButtons = document.getElementById('box1')
         SpaceForButtons.appendChild(newButton); //this adds the button to our page.
@@ -45,7 +45,7 @@ function createButtons2(lat,lng,title){
         newButton2.setAttribute("lat",lat); // sets the latitude 
         newButton2.setAttribute("lng",lng); // sets the longitude 
         newButton2.addEventListener('click', function(){
-                map.flyTo([lat,lng]); //this is the flyTo from Leaflet
+                map.flyTo([lat,lng],10); //this is the flyTo from Leaflet
         })
         const SpaceForButtons = document.getElementById('box2')
         SpaceForButtons.appendChild(newButton2); //this adds the button to our page.
@@ -58,7 +58,7 @@ newButton3.innerHTML = title; // gives the button a title
 newButton3.setAttribute("lat",lat); // sets the latitude 
 newButton3.setAttribute("lng",lng); // sets the longitude 
 newButton3.addEventListener('click', function(){
-        map.flyTo([lat,lng]); //this is the flyTo from Leaflet
+        map.flyTo([lat,lng],10); //this is the flyTo from Leaflet
 })
 const SpaceForButtons = document.getElementById('box3')
 SpaceForButtons.appendChild(newButton3); //this adds the button to our page.
