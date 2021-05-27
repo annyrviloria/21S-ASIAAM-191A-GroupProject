@@ -7,7 +7,7 @@ const map = L.map('map').setView([32.63188332081661, -115.4562838930214], 6
 
 function addMarker(data){
         // console.log(data)
-        L.marker([data.lat,data.lng]).addTo(map).bindPopup(`<h2>${"Location: " + data.inwhatcityortowndidtheincidenthappen}</h2>${data.timestamp}<br>${"Gender: " + data.whatgenderdoyouidentifywith}<br> ${"Age: " + data.howoldareyou}`)
+        L.marker([data.lat,data.lng]).addTo(map).bindPopup(`<h2>${"Location: " + data.cityortown}</h2>${data.timestamp}<br>${"Gender: " + data.gender}<br> ${"Age: " + data.age}`)
         createButtons(data.lat,data.lng,data.event)
         return data.timestamp
 }
