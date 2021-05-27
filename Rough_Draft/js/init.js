@@ -60,7 +60,7 @@ newButton3.setAttribute("lng",lng); // sets the longitude
 newButton3.addEventListener('click', function(){
         map.flyTo([lat,lng]); //this is the flyTo from Leaflet
 })
-const SpaceForButtons = document.getElementById('box2')
+const SpaceForButtons = document.getElementById('box3')
 SpaceForButtons.appendChild(newButton3); //this adds the button to our page.
 }
 
