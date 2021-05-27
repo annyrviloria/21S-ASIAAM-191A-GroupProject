@@ -18,7 +18,6 @@ header{
     text-align: center;
     background-color: rgb(255, 255, 255);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
 }
 
 .description{
@@ -46,10 +45,22 @@ header{
     border: 2px solid #5E6472;
 } 
 
-#contents{
+.box1{
     grid-area: contentpanel;
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
+    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
+    border: 5px solid #5E6472;
+}
+
+.box2{
+    grid-area: contentpanel;
+    display:grid;
+    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
+}
+
+.box3{
+    grid-area: contentpanel;
+    display:grid;
     overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 

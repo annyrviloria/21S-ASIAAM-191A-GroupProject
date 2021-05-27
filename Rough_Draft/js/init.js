@@ -9,6 +9,7 @@ function addMarker(data){
         // console.log(data)
         L.marker([data.lat,data.lng]).addTo(map).bindPopup(`<h2>${"Location: " + data.cityortown}</h2>${data.timestamp}<br>${"Gender: " + data.gender}<br> ${"Age: " + data.age}`)
         createButtons(data.lat,data.lng,data.event)
+        createButtons2(data.lat,data.lng,data.authoritiesresponse)
         return data.timestamp
 }
 
@@ -32,9 +33,21 @@ function createButtons(lat,lng,title){
         newButton.addEventListener('click', function(){
             map.flyTo([lat,lng]); //this is the flyTo from Leaflet
         })
-        const SpaceForButtons = document.getElementById('contents')
+        const SpaceForButtons = document.getElementById('box1')
         SpaceForButtons.appendChild(newButton); //this adds the button to our page.
       }
+function createButtons2(lat,lng,title){
+        const newButton2 = document.createElement("button"); // adds a new button
+        newButton2.id = "button"+title; // gives the button a unique id
+        newButton2.innerHTML = title; // gives the button a title
+        newButton2.setAttribute("lat",lat); // sets the latitude 
+        newButton2.setAttribute("lng",lng); // sets the longitude 
+        newButton2.addEventListener('click', function(){
+                map.flyTo([lat,lng]); //this is the flyTo from Leaflet
+        })
+        const SpaceForButtons = document.getElementById('box2')
+        SpaceForButtons.appendChild(newButton); //this adds the button to our page.
+        }
 
 function formatData(theData){
         const formattedData = [] /* this array will eventually be populated with the contents of the spreadsheet's rows */
