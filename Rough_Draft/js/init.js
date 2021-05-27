@@ -12,7 +12,7 @@ function addMarker(data){
         return data.timestamp
 }
 
-let url = "https://spreadsheets.google.com/feeds/list/1gB_pIq1Y0WGMzJjC8qPA5oGT6sDAfkhZLL_ag1GL3j8/oiz5byp/public/values?alt=json"
+let url = "https://spreadsheets.google.com/feeds/list/1RlYgkgQCWUYNnwwPTRN4qrrIzkZ_fv6zJYtOFoK-9f4/ocya9of/public/values?alt=json"
 fetch(url)
 	.then(response => {
 		return response.json();
