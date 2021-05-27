@@ -44,23 +44,26 @@ header{
     border-radius: 5px;
     border: 2px solid #5E6472;
 } 
-
-.box1{
+#container {
     grid-area: contentpanel;
     display:grid;
+    grid-template-areas: "box1" "box2" "box3";
+    grid-template-rows: repeat(1, 200px);
     overflow-y:scroll; /* adds a vertical scroll-bar to this div */
-    border: 5px solid #5E6472;
+    }
+
+#box1{
+    grid-area: box1;
+    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 
-.box2{
-    grid-area: contentpanel;
-    display:grid;
+#box2{
+    grid-area: box2;
     overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 
-.box3{
-    grid-area: contentpanel;
-    display:grid;
+#box3{
+    grid-area: box3;
     overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 
