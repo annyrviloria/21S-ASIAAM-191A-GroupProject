@@ -36,12 +36,21 @@ header{
     padding:10px;
 }
 
+#leftcontent{
+    grid-area: mappanel;
+    display: grid;
+    grid-template-areas: "box1" "map";
+    grid-template-rows: minmax(3px, auto);
+}
+
+#box1{
+    grid-area: box1;
+}
+
 #map{
     height:80vh;
-    grid-area: mappanel;
     border-radius: 5px;
     border: 2px solid #5E6472;
-    display: grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
     grid-template-rows: repeat(3, minmax(0,1fr));
     align-items: end;
@@ -55,11 +64,8 @@ header{
     padding:10px;
 }
 
-#container {
+#rightcontainer {
     grid-area: contentpanel;
-    display:grid;
-    grid-template-areas: "box1" "box2";
-    grid-template-rows: minmax(3px, auto);
     overflow-y:scroll;  /*adds a vertical scroll-bar to this div */
     }
 
@@ -72,6 +78,9 @@ header{
 #box2{
     grid-area: box2;
 }
+/* use these cards 
+https://www.w3schools.com/howto/howto_css_cards.asp
+*/
 
 button{
     background-color: rgba(207, 207, 207, 0.621);
