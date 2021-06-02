@@ -7,7 +7,7 @@ html, body {
      display: grid;
      grid-template-columns: 1fr 1fr; 
      grid-auto-rows: minmax(5px, auto); /* add rows for our header/footer */
-     grid-template-areas: "header header header"  "description description description" "surveybuttons surveybuttons surveybuttons" "mappanel contentpanel ." "footer . .";
+     grid-template-areas: "header header header"  "description description description" "mappanel contentpanel ." "footer footer footer";
      justify-content: center;
      background-color: rgb(255, 255, 255);
      color:rgba(0, 0, 0, 0.959);
@@ -57,13 +57,12 @@ header{
     grid-area: contentpanel;
     display:grid;
     grid-template-areas: "box1" "box2";
-    grid-template-rows: repeat(1, 200px);
-    /*overflow-y:scroll;  adds a vertical scroll-bar to this div */
+    grid-template-rows: minmax(5px, auto);
+    overflow-y:scroll;  /*adds a vertical scroll-bar to this div */
     }
 
 #box1{
     grid-area: box1;
-    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 
 #box2{
@@ -83,7 +82,7 @@ https://www.w3schools.com/howto/howto_css_cards.asp
 */
 
 .card{
-    background-color: aqua;
+    background-color:lavender ;
     border-radius: 5px; /* 5px rounded corners */
     padding:10px;
 }
