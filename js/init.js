@@ -167,7 +167,7 @@ function highlightFeature(e) {
     //console.log('layer')
     //console.log(layer.feature.properties.values)
     let boundaryProperties = layer.feature.properties
-    let divToUpdate = document.getElementById("box2")
+    let divToUpdate = document.getElementById("rightcontainer")
     console.log('divToUpdate')
     console.log(divToUpdate)
     layer.setStyle({
@@ -231,15 +231,12 @@ function updateContentsPanel(target,boundaryValues){
 function addStory(story,target){
     target.innerHTML += `<div class="card">
                             <h3>Date reported: ${story.theTime}</h3>
-                            <p>${story.theStory}</p>
-                            <p>${story.reportingInfo}</p>
-                            <p>${story.authresponse}</p>
+                            <p><strong>Description of the incident: </strong>${story.theStory}</p>
                             <p>${story.support}</p>
-                            <p>${story.reportType}</p>
-                            <p>${story.age}</p>
-                            <p>${story.gender}</p>
+                            <p><strong>Incident reporting type: </strong>${story.reportingInfo}</p>
+                            <p>${story.authresponse}</p>
+                            <p><strong>Type of report: </strong>${story.reportType}</p>
+                            <p><strong>Reporter's age: </strong>${story.age}</p>
+                            <p><strong>Reporter's gender: </strong>${story.gender}</p>
                         </div>`
 }
-
-
-//(`<h2>${data.whatstheirbestdish}</h2>`+`<h3>Open during daytime</h3>`+`<p><b>Location:</b>${data.whereisitat}</p>`+`<p><b>Name or Description:</b>${data.doesthisspothaveanameifnothowcouldifindit}</p>`+`<p><b>How did you find it:</b>${data.howdidyoufindthisspot}</p>`)
