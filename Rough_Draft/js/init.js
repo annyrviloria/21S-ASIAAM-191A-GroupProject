@@ -33,15 +33,30 @@ function onEachFeature(feature, layer) {
         let count = feature.properties.values.length
         console.log(count)
         let text = count.toString() // I THINK THIS IS WHERE I NEED TO COUNT REPORTED EVENT VS NON-REPORTED EVENTS
-        
+        //let where = feature.properties. HOW DO I TELL IT TO RECALL THE STATE NAME????
+        //let data = {
+                //['state']: data.inwhatstatedidtheincidentyouarereportingoccur,
+                //['city']: data.inwhatcityortowndidtheincidenthappen,
+                //['age']: data.howoldareyou,
+                //['gender']: data.whatgenderdoyouidentifywith,
+                //['story']: data.pleasedescribetheeventyoudliketoreport,
+                //['lat']: data.lat,
+                //['lng']: data.lng,
+                //['report']: data.whowasthisincidentreportedto,
+                //['authresponse']: data.ifyoureportedthisincidenthowdidtheauthoritiesrespondtothereport,
+                //['support']: data.whatresourcesorsupportwouldhavebeenhelpfultoaddresstheincidentyouarereporting
+        //}
         layer.on({
                 mouseover: highlightFeature,
                 mouseout: resetHighlight,
-                click: layer.bindPopup("Total number of reports: "+text)
+                click: layer.bindPopup("Number of incidents: "+text+"   CAN ADD OTHER TEXT ONCE I CAN FILTER THE INFO")
             });
             ;
     }
 }
+
+//(`<h2>${data.whatstheirbestdish}</h2>`+`<h3>Open during daytime</h3>`+`<p><b>Location:</b>${data.whereisitat}</p>`+`<p><b>Name or Description:</b>${data.doesthisspothaveanameifnothowcouldifindit}</p>`+`<p><b>How did you find it:</b>${data.howdidyoufindthisspot}</p>`)
+
 
 function getStyles(data){
         // console.log(data)
@@ -110,14 +125,14 @@ function addMarker(data){
                 //
                 countNewReports += 1
                 reportType = "new"
-                newReport.addLayer(L.circleMarker([data.lat,data.lng]))
+                //newReport.addLayer(L.circleMarker([data.lat,data.lng]))
 
         }
         else{
                 //
                 countOtherReports += 1
                 reportType = "other"
-                otherReport.addLayer(L.circleMarker([data.lat,data.lng]))
+                //otherReport.addLayer(L.circleMarker([data.lat,data.lng]))
 
         }
         let thisMarker = {
@@ -125,7 +140,6 @@ function addMarker(data){
                 "lng":data.lng,
                 "report":reportType,
                 "timestamp":data.timestamp,
-                
         }
         let theTime = data.timestamp
         // create the turfJS point
@@ -180,9 +194,9 @@ let layers = {
 
 //L.control.layers(null,layers,{collapsed:false}).addTo(map)
 
-collected.features.properties.values
+//collected.features.properties.values
 
-/////////////////// UI STUFF
+///////////////////////////// UI STUFF ////////////////////////////////
 
 var info = L.control();
 info.onAdd = function (map) {
