@@ -32,34 +32,19 @@ function onEachFeature(feature, layer) {
     if (feature.properties.values) {
         let count = feature.properties.values.length
         console.log(count)
-        let text = count.toString() // I THINK THIS IS WHERE I NEED TO COUNT REPORTED EVENT VS NON-REPORTED EVENTS
-        //let where = feature.properties. HOW DO I TELL IT TO RECALL THE STATE NAME????
-        //let data = {
-                //['state']: data.inwhatstatedidtheincidentyouarereportingoccur,
-                //['city']: data.inwhatcityortowndidtheincidenthappen,
-                //['age']: data.howoldareyou,
-                //['gender']: data.whatgenderdoyouidentifywith,
-                //['story']: data.pleasedescribetheeventyoudliketoreport,
-                //['lat']: data.lat,
-                //['lng']: data.lng,
-                //['report']: data.whowasthisincidentreportedto,
-                //['authresponse']: data.ifyoureportedthisincidenthowdidtheauthoritiesrespondtothereport,
-                //['support']: data.whatresourcesorsupportwouldhavebeenhelpfultoaddresstheincidentyouarereporting
-        //}
+        console.log(feature.properties)
+        let reportSum = count.toString() // I THINK THIS IS WHERE I NEED TO COUNT REPORTED EVENT VS NON-REPORTED EVENTS
+        let clickName = feature.properties.NAME
         layer.on({
                 mouseover: highlightFeature,
                 mouseout: resetHighlight,
-                click: layer.bindPopup("Number of incidents: "+text+"   CAN ADD OTHER TEXT ONCE I CAN FILTER THE INFO")
+                click: layer.bindPopup(`<strong>State: </strong>`+clickName+`<br>`+`<strong>Number of incidents reported: </strong>`+reportSum)
             });
             ;
     }
 }
 
-//(`<h2>${data.whatstheirbestdish}</h2>`+`<h3>Open during daytime</h3>`+`<p><b>Location:</b>${data.whereisitat}</p>`+`<p><b>Name or Description:</b>${data.doesthisspothaveanameifnothowcouldifindit}</p>`+`<p><b>How did you find it:</b>${data.howdidyoufindthisspot}</p>`)
-
-
 function getStyles(data){
-        // console.log(data)
         let myStyle = {
             "color": "#ffd369",
             "weight": 1,
@@ -142,8 +127,26 @@ function addMarker(data){
                 "timestamp":data.timestamp,
         }
         let theTime = data.timestamp
+        let dirtyState = data.inwhatstatedidtheincidentyouarereportingoccur 
+        let stateArray = dirtyState.split(",")
+        let state = stateArray[0]
+        console.log(state)
+        let support = data.whatresourcesorsupportwouldhavebeenhelpfultoaddresstheincidentyouarereporting
+                // data = {
+                //['state']: data.inwhatstatedidtheincidentyouarereportingoccur,
+                //['city']: data.inwhatcityortowndidtheincidenthappen,
+                //['age']: data.howoldareyou,
+                //['gender']: data.whatgenderdoyouidentifywith,
+                //['story']: data.pleasedescribetheeventyoudliketoreport,
+                //['lat']: data.lat,
+                //['lng']: data.lng,
+                //['report']: data.whowasthisincidentreportedto,
+                //['authresponse']: data.ifyoureportedthisincidenthowdidtheauthoritiesrespondtothereport,
+                //['support']: data.whatresourcesorsupportwouldhavebeenhelpfultoaddresstheincidentyouarereporting
+        //}
         // create the turfJS point
-        let thisPoint = turf.point([Number(data.lng),Number(data.lat)],{reportType,theTime})
+        let thisPoint = turf.point([Number(data.lng),Number(data.lat)],{reportType,theTime, state, support})
+        console.log(thisPoint)
         // put all the turfJS points into `allPoints`
         allPoints.push(thisPoint)
 }
@@ -187,10 +190,10 @@ function formatData(theData){
         map.fitBounds(allLayers.getBounds()); 
     }
 
-let layers = {
-	"Events <strong>not reported</strong> to the authorities": newReport,
-	"Events reported to an authority": otherReport
-}
+//let layers = {
+	//"Events <strong>not reported</strong> to the authorities": newReport,
+	//"Events reported to an authority": otherReport
+//}
 
 //L.control.layers(null,layers,{collapsed:false}).addTo(map)
 
@@ -198,21 +201,19 @@ let layers = {
 
 ///////////////////////////// UI STUFF ////////////////////////////////
 
-var info = L.control();
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-};
-info.addTo(map);
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-    this._div.innerHTML = '<h4></h4>' +  (props ?
-        '<b></b><br /> people / mi<sup>2</sup>'
-        : 'Hover over a state');
-};
+// function to process the data and check if it matches the stateName passed in
+function stateCheck(data,stateName) {
+    //console.log("checking state name")
+    //console.log(data)
 
+    // only return data if it matches the state name
+    if (stateName==data.properties.state){
 
+        // this is how the function returns the data
+        return data
+    }
+    
+}
 
 function highlightFeature(e) {
     var layer = e.target;
@@ -241,12 +242,45 @@ function resetHighlight(e) {
 
 function updateContentsPanel(target,boundaryValues){
     // use console.log to see what properties can be accessed
-    console.log(boundaryValues)
+    //console.log(boundaryValues)
+
+    // this is the variable for holding the resulting data from the stateCheck
+    let results=[]
     let stateName = boundaryValues.NAME//
 
+    // this is the variable that temporary stores the data from stateCheck that
+    // we push into the results
+    let thisData;
+
+    // loop through all the points and run the stateCheck function
+    // we pass in the parameters of data and the current stateName
+    allPoints.forEach(data=>results.push(thisData = stateCheck(data,stateName)))
+    
+    // filter out data the exist
+    let filtered = results.filter(function (data) {
+        return data != null;
+      });
+
+    // check to see if data is filtered
+    console.log(filtered)      
     
     let count = boundaryValues.values.length
     console.log('count')
     
-    target.innerHTML = `<h2>State: ${boundaryValues.NAME}</h2><h3>${count}</h3>`
+    // this the title HTML for the right side
+    target.innerHTML = `<div id="state"><h2>State: ${boundaryValues.NAME}</h2><h3>${count}</h3></div>`
+    
+    // sort by descending
+    let sorted = filtered.sort().reverse()
+
+    // used the sorted data to make the map
+    sorted.forEach(story=>addStory(story.properties,target))
 }
+
+// function to add the story with the target div
+function addStory(story,target){
+    target.innerHTML += `<div class="card"><h2>State: ${story.theTime}</h2><h3>${story.support}</h3></div>`
+}
+
+
+//(`<h2>${data.whatstheirbestdish}</h2>`+`<h3>Open during daytime</h3>`+`<p><b>Location:</b>${data.whereisitat}</p>`+`<p><b>Name or Description:</b>${data.doesthisspothaveanameifnothowcouldifindit}</p>`+`<p><b>How did you find it:</b>${data.howdidyoufindthisspot}</p>`)
