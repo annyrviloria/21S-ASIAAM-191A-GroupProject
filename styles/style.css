@@ -65,11 +65,12 @@ header{
 
 #box1{
     grid-area: box1;
+    padding:10px;
+
 }
 
 #box2{
     grid-area: box2;
-    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 }
 
 button{
@@ -87,9 +88,11 @@ https://www.w3schools.com/howto/howto_css_cards.asp
     background-color:lavender ;
     border-radius: 5px; /* 5px rounded corners */
     padding:10px;
+    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
+
 }
 #state{
-    padding:10px
+    padding:10px;
 }
 
 footer{
