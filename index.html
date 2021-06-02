@@ -17,7 +17,7 @@
     <body>
         <header>
             <h1 id="title">Justicia Migratoria</h1>
-        </header> 
+        </header>
 
     <div class= "description"> 
         <!--font, color, other aesthetics subject to change-->
@@ -28,8 +28,17 @@
 
     <div id="leftcontainer"> 
         <div id="box1"> 
-            <h4>Incidents of violence targetting migrants reported along the US-Mexico border by state</h5>
-            <p>Hover over each border state to read the stories reported</p> 
+            <h4>Hover over each border state to read the stories reported</h4> 
+            <!-- Added Google Translate Button  -->
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element');
+        }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>
         </div>
         <div id=map> </div>
     </div>
