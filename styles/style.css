@@ -59,7 +59,7 @@ header{
     grid-area: contentpanel;
     display:grid;
     grid-template-areas: "box1" "box2";
-    grid-template-rows: minmax(5px, auto);
+    grid-template-rows: minmax(3px, auto);
     overflow-y:scroll;  /*adds a vertical scroll-bar to this div */
     }
 
