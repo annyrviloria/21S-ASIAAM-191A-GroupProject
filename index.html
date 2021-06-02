@@ -12,6 +12,8 @@
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <!-- Adding the TurfJs library  -->
         <script src='https://unpkg.com/@turf/turf@6.3.0/turf.min.js'></script>
+       <!-- plugin from: https://cliffcloud.github.io/Leaflet.Sleep/--> 
+        <script src="Leaflet.Sleep.js"></script>
     </head>
     
     <body>
@@ -24,7 +26,7 @@
         <p> Attempting to cross the southern border of the United States, migrants and refugees face a road full of violence and treachery. With the ongoing threats of climate change, political instability, and economic uncertainty triggered by the COVID-19 pandemic, incidences of targeted violence will only continue to increase. Yet, these events remain undereported as migration status makes individuals vulnerable to threats of deportaton and criminalization. Thus, <i>Justicia Migratoria</i> seeks to develop a tool for community members to <strong>(1) </strong> <span style="color:darkviolet ">document incidents of violence experienced in the migration trail</span>, <strong>(2) </strong> <span style="color: Tomato">uplift migrants’ stories on their own terms</span>, and <strong>(3) </strong> <span style="color:darkgreen">bring visibility to the gap between documented/undocumented reports of violence against migrants</span>.</p> 
         <p>If you are a migrant and a survivor of any form of violence at the United States border, we invite you to report your experience through our online survey. Legal advocates are also welcome to take our survey to report on behalf of migrant survivors. All survey responses will remain anonymous and will not be reported to any authorities. </p>
         <h3><a href="survey.html">Click Here to Take the Survey</a></h4>
-        <h3><a href="spanishsurvey.html">Clic aquí para tomar la encuesta</a></h4>
+        <h3><a href="spanishsurvey.html">Clic Aquí Para Realizar la Encuesta</a></h4>
     </div>
 
     <div id="map"> <div id="legend">Incidents of violence targetting migrants reported along the US-Mexico border by state</div> </div>
@@ -32,6 +34,8 @@
     <div id="container">
         <div id="box1"> 
             <h3> Here there will be a 2 buttons and three counts: button 1 = see events not reported. button 2= see events reported to authorites. counts: (1) total events (2) reported events (3) not reported events </h3> 
+            <button>See events not reported to the authorities</button> 
+            <button>See events reported to the authorities</button> 
             <div class="info"></div>
         </div>
         <div class="row"> </div>
@@ -44,7 +48,7 @@
       </div>
 
     <footer>  
-        <br> A project by Anny Rodriguez Viloria, Alize Magaña y Andi Min for ASIAAM 191A Spring 2021 
+        <br> A project by Anny Rodriguez Viloria, Alize Magaña and Andi Min for ASIAAM 191A Spring 2021 
         <a href="https://github.com/annyrviloria/21S-ASIAAM-191A-GroupProject/tree/main/Rough_Draft">Github Documentation</a></h4>
     </footer> 
     
