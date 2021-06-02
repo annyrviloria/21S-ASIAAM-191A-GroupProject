@@ -9,7 +9,7 @@ html, body {
      grid-auto-rows: minmax(5px, auto); /* add rows for our header/footer */
      grid-template-areas: "header header header"  "description description description" "surveybuttons surveybuttons surveybuttons" "mappanel contentpanel ." "footer . .";
      justify-content: center;
-     background-color: rgb(255, 255, 255);
+     background-color: rgb(245, 244, 244);
      color:rgba(0, 0, 0, 0.959);
  }
 
@@ -17,7 +17,8 @@ header{
     grid-area: header;
     justify-content: center;
     text-align: center;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(245, 244, 244);
+    color:rgba(0, 0, 0, 0.959);
     font-size: x-large;
 }
 
@@ -70,7 +71,7 @@ header{
 }
 
 button{
-    background-color: rgba(255, 255, 255, 0.621);
+    background-color: rgba(207, 207, 207, 0.621);
     font-size: 20px;
     border-radius: 5%;
 }
