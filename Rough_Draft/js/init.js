@@ -14,12 +14,11 @@ fetch(url)
 		return response.json();
 		})
     .then(data =>{
-                // console.log(data)
                 formatData(data)
         }
 )
 
-// map shows reports divded between events reported to any authorites and events not reported at all
+// map shows reports divided between events reported to any authorites and events not reported at all
 let newReport = L.featureGroup();
 let otherReport = L.featureGroup();
 
@@ -30,17 +29,15 @@ let collected;
 let boundaryGeo;
 let allPoints = [];
 function onEachFeature(feature, layer) {
-    // console.log(feature.properties)
-
     if (feature.properties.values) {
         let count = feature.properties.values.length
         console.log(count)
-        let text = count.toString()
+        let text = count.toString() // I THINK THIS IS WHERE I NEED TO COUNT REPORTED EVENT VS NON-REPORTED EVENTS
         
         layer.on({
                 mouseover: highlightFeature,
-                mouseout: resetHighlight
-                // click: layer.bindPopup(text)
+                mouseout: resetHighlight,
+                click: layer.bindPopup("Total number of reports: "+text)
             });
             ;
     }
@@ -49,9 +46,9 @@ function onEachFeature(feature, layer) {
 function getStyles(data){
         // console.log(data)
         let myStyle = {
-            "color": "#ff7800",
+            "color": "#ffd369",
             "weight": 1,
-            "opacity": .0,
+            "opacity": 50,
             "stroke": .5
         };
         if (data.properties.values.length > 0){
@@ -68,7 +65,6 @@ function getStyles(data){
         .then(data =>{
                     //set the boundary to data
                     boundary = data
-    
                     // run the turf collect geoprocessing
                     collected = turf.collect(boundary, thePoints, 'reportType', 'values');
                     // just for fun, you can make buffers instead of the collect too:
@@ -79,12 +75,15 @@ function getStyles(data){
                     boundaryGeo = L.geoJson(collected,{onEachFeature: onEachFeature,style:function(feature)
                     {
                         // console.log(feature)
+                        if (feature.properties.values.length > 4) {
+                            return {color: "#800026",stroke: false};
+                        }
                         if (feature.properties.values.length > 0) {
-                            return {color: "#ff0000",stroke: false};
+                                return {color: "#FEB24C",stroke: false};
                         }
                         else{
                             // make the polygon gray and blend in with basemap if it doesn't have any values
-                            return{opacity:0,color: "#efefef" };
+                            return{opacity:0,color: "#FFEDA0" };
                         }
                     }
                     // add the geojson to the map
@@ -134,49 +133,6 @@ function addMarker(data){
         // put all the turfJS points into `allPoints`
         allPoints.push(thisPoint)
 }
-
-// refer to this: https://github.com/rachan2023/21S-191A-Against-Asian-Hate/blob/main/Final%20project/js/init.js
-
-function createButtons(data){
-        const newButton = document.createElement("button"); // adds a new button
-        newButton.id = "button"+title; // gives the button a unique id
-        newButton.innerHTML = `<h2>${data.reportedtowho}</h2>`; // gives the button a title
-        newButton.setAttribute("typeOfReport",data.reportedtowho); // sets the latitude 
-        newButton.setAttribute("lat",data.lat); // sets the latitude 
-        newButton.setAttribute("lng",data.lng); // sets the longitude 
-        newButton.addEventListener('click', function(){
-            map.flyTo([data.lat,data.lng],10); //this is the flyTo from Leaflet
-        })
-        const SpaceForButtons = document.getElementById('box1')
-        SpaceForButtons.appendChild(newButton); //this adds the button to our page.
-      }
-
-function createButtons2(lat,lng,title){
-        const newButton2 = document.createElement("button"); // adds a new button
-        newButton2.id = "button"+title; // gives the button a unique id
-        newButton2.innerHTML = title; // gives the button a title
-        newButton2.setAttribute("lat",lat); // sets the latitude 
-        newButton2.setAttribute("lng",lng); // sets the longitude 
-        newButton2.addEventListener('click', function(){
-                map.flyTo([lat,lng],10); //this is the flyTo from Leaflet
-        })
-        const SpaceForButtons = document.getElementById('box2')
-        SpaceForButtons.appendChild(newButton2); //this adds the button to our page.
-        }
-
-function createButtons3(lat,lng,title){
-const newButton3 = document.createElement("button"); // adds a new button
-newButton3.id = "button"+title; // gives the button a unique id
-newButton3.innerHTML = title; // gives the button a title
-newButton3.setAttribute("lat",lat); // sets the latitude 
-newButton3.setAttribute("lng",lng); // sets the longitude 
-newButton3.addEventListener('click', function(){
-        map.flyTo([lat,lng],10); //this is the flyTo from Leaflet
-})
-const SpaceForButtons = document.getElementById('box3')
-SpaceForButtons.appendChild(newButton3); //this adds the button to our page.
-}
-
 
 function formatData(theData){
         const formattedData = [] /* this array will eventually be populated with the contents of the spreadsheet's rows */
