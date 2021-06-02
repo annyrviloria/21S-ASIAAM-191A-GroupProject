@@ -20,6 +20,8 @@ header{
     background-color: rgb(245, 244, 244);
     color:rgba(0, 0, 0, 0.959);
     font-size: x-large;
+    padding:10px;
+
 }
 
 .description{
@@ -74,6 +76,20 @@ button{
     background-color: rgba(207, 207, 207, 0.621);
     font-size: 20px;
     border-radius: 5%;
+}
+
+/* use these cards 
+
+https://www.w3schools.com/howto/howto_css_cards.asp
+*/
+
+.card{
+    background-color: aqua;
+    border-radius: 5px; /* 5px rounded corners */
+    padding:10px;
+}
+#state{
+    padding:10px
 }
 
 footer{
