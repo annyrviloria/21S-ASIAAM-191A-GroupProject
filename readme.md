@@ -17,7 +17,7 @@
 
 
 ## General Information
-- Justicia Migratoria intends to...
+Justicia Migratoria intends to:
 - document incidents of violence experienced during migration
 - uplift migrants' stories on their own terms
 - bring visibility to the gap between documented/undocumented reports of violence against migrants
@@ -27,15 +27,14 @@
 ## Technologies Used
 - Tech 1 - Javascript
 - Tech 2 - CSS
-- Tech 3 - GeoJson
+- Tech 3 - Leatlet maps
 
 
 ## Features
-List the ready features here:
-- Take our survey to report your experience
-- View the experiences of and resources migrants and immigrant rights advocates need
-- Find survey responses and locations of incidents on our interactive map
-
+By accessing our mapplication, users will be able to:
+- Take our survey to report their experiences traveling to the US southern border
+- Read about the experiences of other migrants and immigrant rights advocates
+- Visualize how reports of violence are concentrated in different across the US border
 
 ## Screenshots
 ![Example screenshot](./screenshots/map_stories.png)
@@ -43,31 +42,19 @@ List the ready features here:
 
 
 ## Setup
-To run this project, simply open the link using an updated web browser. (We use Firefox Browser Version 89.0)
-
-You can click on one of the top two buttons in order to fill out our survey, either in English or in Spanish.
-View our mapping tool and survey responses by scrolling to the bottom of the page.
+To run this project, simply open the link using an updated web browser. A google translate button in the top right of the page allows you to see the content and navigate the page in any language of your choosing. From the main page of the site, you can navigate to the project survey, which is available both in English and in Spanish.
 
 
 ## Usage
-To insert our survey onto your web browser, you can copy and paste the folowing code:
+The mapplication is a cloropleth map of the border states in Mexico and the United States. By clicking on each of the states, users can see the state name and the total number of incidents reported. By hovering over each state, users can see the reports collected in a given state, organized from most recent to oldest. Visually, you can take a quick look at the states with more reports because these are colored red and states with fewest reports are colored light yellow.
 
-            <h1>Justicia Migratoria: Encuesta</h1> 
-            <a href="index.html" id="home">Volver al sitio principal</a>
-    <div id="survey">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScdQX4vn2Ag8jAgH54FaPno4jZRMnPnMw-bHrua_qNuzPqP3w/viewform?embedded=true" width="640" height="1186" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>    </div>
-    <footer>  
-        <br>Un proyecto de Anny Rodriguez Viloria, Alize Magaña y Andi Min para ASIAAM 191A Spring 2021 |
-        <a href="https://github.com/annyrviloria/21S-ASIAAM-191A-GroupProject/tree/main/Rough_Draft"> Documentación de Github </a></h4>
-    </footer> 
-
+Those interested in taking the survey can click on the buttons inside the description box. The survey is available in English and Spanish.
 
 ## Project Status
-Project is: in progress
+All the main features of the mapplication have been completed. We are now working to collect ideas for further improvement of the site based on tester's feedback.
 
 
 ## Room for Improvement
-
 
 Room for improvement:
 - It would be useful for viewers to be able to find stories similar to theirs, or to find incident reports according to demographics like age or gender.
@@ -79,10 +66,9 @@ To do:
 
 
 ## Acknowledgements
+This project was inspired by the [Stop AAPI Hate Map](http://www.hatecrimemap.com/covid). By emphasizing visibility of physical and verbal violence committed against migrants and refugees, we hope this project enourages all to reflect on the continuing struggles over land and belonging.
 
-- By emphasizing visibility of physical and verbal violence committed against migrants and refugees, we hope this project enourages all to reflect on the continuing struggles over land and belonging.
-- This project was based on [Stop AAPI Hate Map](http://www.hatecrimemap.com/covid).
-- Many thanks to... Albert Kochaphum
+Many thanks to Albert Kochaphum for his guidance and mentorship.
 
 
 ## Contact
