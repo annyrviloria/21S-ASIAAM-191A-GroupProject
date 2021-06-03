@@ -150,6 +150,7 @@ function formatData(theData){
         map.fitBounds(allLayers.getBounds()); 
     }
 
+
 ///////////////////////////// UI STUFF ////////////////////////////////
 
 // function to process the data and check if it matches the stateName passed in
@@ -233,7 +234,7 @@ function addStory(story,target){
                             <h3>Date reported: ${story.theTime}</h3>
                             <p><strong>Description of the incident: </strong>${story.theStory}</p>
                             <p>${story.support}</p>
-                            <p><strong>Incident reporting type: </strong>${story.reportingInfo}</p>
+                            <p><strong>If incident was reported, who was it reported to: </strong>${story.reportingInfo}</p>
                             <p>${story.authresponse}</p>
                             <p><strong>Type of report: </strong>${story.reportType}</p>
                             <p><strong>Reporter's age: </strong>${story.age}</p>
