@@ -27,7 +27,7 @@ Justicia Migratoria intends to:
 ## Technologies Used
 - Tech 1 - Javascript
 - Tech 2 - CSS
-- Tech 3 - Leatlet maps
+- Tech 3 - Leaflet maps
 
 
 ## Features
