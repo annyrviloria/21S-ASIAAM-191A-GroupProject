@@ -1,5 +1,5 @@
 html, body {
-    padding: 8px;
+    padding: 10px;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  }
 
@@ -7,10 +7,11 @@ html, body {
      display: grid;
      grid-template-columns: 1fr 1fr; 
      grid-auto-rows: minmax(5px, auto); /* add rows for our header/footer */
-     grid-template-areas: "header header header"  "description description description" "mappanel contentpanel ." "footer footer footer";
+     grid-template-areas: "translate translate" "header header" "description description" "mappanel contentpanel" "footer footer";
      justify-content: center;
      background-color: rgb(245, 244, 244);
      color:rgba(0, 0, 0, 0.959);
+     padding: 10px;
  }
 
 header{
@@ -20,7 +21,7 @@ header{
     background-color: rgb(245, 244, 244);
     color:rgba(0, 0, 0, 0.959);
     font-size: x-large;
-    padding:10px;
+    padding:1px;
 
 }
 
@@ -29,11 +30,16 @@ header{
     justify-content: center;
     text-align: center;
     font-size:medium;
-    width: 99%;
+    width: 97%;
     border-radius: 5px;
     border: 3px solid #496197;
     margin: .5rem;
     padding:10px;
+}
+
+#google_translate_element{
+    grid-area: translate;
+    justify-content:end;
 }
 
 #leftcontent{
