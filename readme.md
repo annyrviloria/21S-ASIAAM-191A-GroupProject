@@ -80,7 +80,7 @@ To do:
 
 ## Acknowledgements
 
-- This project was inspired by...
+- By emphasizing visibility of physical and verbal violence committed against migrants and refugees, we hope this project enourages all to reflect on the continuing struggles over land and belonging.
 - This project was based on [Stop AAPI Hate Map](http://www.hatecrimemap.com/covid).
 - Many thanks to... Albert Kochaphum
 
