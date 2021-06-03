@@ -18,10 +18,6 @@ fetch(url)
         }
 )
 
-// map shows reports divided between events reported to any authorites and events not reported at all
-let newReport = L.featureGroup();
-let otherReport = L.featureGroup();
-
 const boundaryLayer ="./data/map.geojson"
 let boundary;
 let ptsWithin;
@@ -32,34 +28,19 @@ function onEachFeature(feature, layer) {
     if (feature.properties.values) {
         let count = feature.properties.values.length
         console.log(count)
-        let text = count.toString() // I THINK THIS IS WHERE I NEED TO COUNT REPORTED EVENT VS NON-REPORTED EVENTS
-        //let where = feature.properties. HOW DO I TELL IT TO RECALL THE STATE NAME????
-        //let data = {
-                //['state']: data.inwhatstatedidtheincidentyouarereportingoccur,
-                //['city']: data.inwhatcityortowndidtheincidenthappen,
-                //['age']: data.howoldareyou,
-                //['gender']: data.whatgenderdoyouidentifywith,
-                //['story']: data.pleasedescribetheeventyoudliketoreport,
-                //['lat']: data.lat,
-                //['lng']: data.lng,
-                //['report']: data.whowasthisincidentreportedto,
-                //['authresponse']: data.ifyoureportedthisincidenthowdidtheauthoritiesrespondtothereport,
-                //['support']: data.whatresourcesorsupportwouldhavebeenhelpfultoaddresstheincidentyouarereporting
-        //}
+        console.log(feature.properties)
+        let reportSum = count.toString() // I THINK THIS IS WHERE I NEED TO COUNT REPORTED EVENT VS NON-REPORTED EVENTS
+        let clickName = feature.properties.NAME
         layer.on({
                 mouseover: highlightFeature,
                 mouseout: resetHighlight,
-                click: layer.bindPopup("Number of incidents: "+text+"   CAN ADD OTHER TEXT ONCE I CAN FILTER THE INFO")
+                click: layer.bindPopup(`<strong>State: </strong>`+clickName+`<br>`+`<strong>Number of incidents reported: </strong>`+reportSum)
             });
             ;
     }
 }
 
-//(`<h2>${data.whatstheirbestdish}</h2>`+`<h3>Open during daytime</h3>`+`<p><b>Location:</b>${data.whereisitat}</p>`+`<p><b>Name or Description:</b>${data.doesthisspothaveanameifnothowcouldifindit}</p>`+`<p><b>How did you find it:</b>${data.howdidyoufindthisspot}</p>`)
-
-
 function getStyles(data){
-        // console.log(data)
         let myStyle = {
             "color": "#ffd369",
             "weight": 1,
@@ -82,14 +63,12 @@ function getStyles(data){
                     boundary = data
                     // run the turf collect geoprocessing
                     collected = turf.collect(boundary, thePoints, 'reportType', 'values');
-                    // just for fun, you can make buffers instead of the collect too:
-                    // collected = turf.buffer(thePoints, 50,{units:'miles'});
                     console.log(collected.features)
     
                     // here is the geoJson of the `collected` result:
                     boundaryGeo = L.geoJson(collected,{onEachFeature: onEachFeature,style:function(feature)
                     {
-                        // console.log(feature)
+                        // color each state based on the count of the data
                         if (feature.properties.values.length > 4) {
                             return {color: "#800026",stroke: false};
                         }
@@ -112,44 +91,41 @@ function getStyles(data){
 // this is for display
 let countNewReports = 0
 let countOtherReports = 0
-
-// for all records in data, get unique states 
 // then each state has count of all events, reported events, not reported events
-// color each state based on the count of the data
 
 function addMarker(data){
         console.log(data.whowasthisincidentreportedto)
         let reportType
         // this logic is for interactivity and the actual data
         if(data.whowasthisincidentreportedto == "I did not report this incident to any authorities"){
-                //
                 countNewReports += 1
                 reportType = "new"
-                //newReport.addLayer(L.circleMarker([data.lat,data.lng]))
-
         }
         else{
-                //
                 countOtherReports += 1
                 reportType = "other"
-                //otherReport.addLayer(L.circleMarker([data.lat,data.lng]))
-
-        }
-        let thisMarker = {
-                "lat":data.lat,
-                "lng":data.lng,
-                "report":reportType,
-                "timestamp":data.timestamp,
         }
         let theTime = data.timestamp
+        let dirtyState = data.inwhatstatedidtheincidentyouarereportingoccur 
+        let stateArray = dirtyState.split(",")
+        let state = stateArray[0]
+        console.log(state)
+        let city = data.inwhatcityortowndidtheincidenthappen
+        let theStory = data.pleasedescribetheeventyoudliketoreport
+        let reportingInfo = data.whowasthisincidentreportedto
+        let authresponse = data.ifyoureportedthisincidenthowdidtheauthoritiesrespondtothereport
+        let support = data.whatresourcesorsupportwouldhavebeenhelpfultoaddresstheincidentyouarereporting
+        let age = data.howoldareyou
+        let gender = data.whatgenderdoyouidentifywith
         // create the turfJS point
-        let thisPoint = turf.point([Number(data.lng),Number(data.lat)],{reportType,theTime})
+        let thisPoint = turf.point([Number(data.lng),Number(data.lat)],{state, city, reportType, theTime, theStory, reportingInfo, authresponse, support, age, gender})
+        console.log(thisPoint)
         // put all the turfJS points into `allPoints`
         allPoints.push(thisPoint)
 }
 
 function formatData(theData){
-        const formattedData = [] /* this array will eventually be populated with the contents of the spreadsheet's rows */
+        const formattedData = []
         const rows = theData.feed.entry
         for(const row of rows) {
           const formattedRow = {}
@@ -161,20 +137,7 @@ function formatData(theData){
           formattedData.push(formattedRow)
         }
         console.log(formattedData)
-        console.log('boundary')
-        console.log(boundary)
         formattedData.forEach(addMarker)
-        console.log('countNewReports')
-        console.log(countNewReports)
-        console.log('countOtherReports')
-        console.log(countOtherReports)
-        // let firstReports = totalResults[0] //find out what this is
-        // console.log('firstReports')
-        // console.log(firstReports)
-        // let otherReports = totalResults[1]
-        newReport.addTo(map)
-        otherReport.addTo(map)
-        let allLayers = L.featureGroup([newReport,otherReport]);
 
         // step 1: turn allPoints into a turf.js featureCollection
         thePoints = turf.featureCollection(allPoints)
@@ -187,39 +150,24 @@ function formatData(theData){
         map.fitBounds(allLayers.getBounds()); 
     }
 
-let layers = {
-	"Events <strong>not reported</strong> to the authorities": newReport,
-	"Events reported to an authority": otherReport
-}
-
-//L.control.layers(null,layers,{collapsed:false}).addTo(map)
-
-//collected.features.properties.values
-
 ///////////////////////////// UI STUFF ////////////////////////////////
 
-var info = L.control();
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-};
-info.addTo(map);
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-    this._div.innerHTML = '<h4></h4>' +  (props ?
-        '<b></b><br /> people / mi<sup>2</sup>'
-        : 'Hover over a state');
-};
-
-
+// function to process the data and check if it matches the stateName passed in
+function stateCheck(data,stateName) {
+    // only return data if it matches the state name
+    if (stateName==data.properties.state){
+        // this is how the function returns the data
+        return data
+    }
+    
+}
 
 function highlightFeature(e) {
     var layer = e.target;
-    console.log('layer')
-    console.log(layer.feature.properties.values)
+    //console.log('layer')
+    //console.log(layer.feature.properties.values)
     let boundaryProperties = layer.feature.properties
-    let divToUpdate = document.getElementById("box1")
+    let divToUpdate = document.getElementById("rightcontainer")
     console.log('divToUpdate')
     console.log(divToUpdate)
     layer.setStyle({
@@ -241,12 +189,54 @@ function resetHighlight(e) {
 
 function updateContentsPanel(target,boundaryValues){
     // use console.log to see what properties can be accessed
-    console.log(boundaryValues)
+    //console.log(boundaryValues)
+
+    // this is the variable for holding the resulting data from the stateCheck
+    let results=[]
     let stateName = boundaryValues.NAME//
 
+    // this is the variable that temporary stores the data from stateCheck that
+    // we push into the results
+    let thisData;
+
+    // loop through all the points and run the stateCheck function
+    // we pass in the parameters of data and the current stateName
+    allPoints.forEach(data=>results.push(thisData = stateCheck(data,stateName)))
+    
+    // filter out data the exist
+    let filtered = results.filter(function (data) {
+        return data != null;
+      });
+
+    // check to see if data is filtered
+    console.log(filtered)      
     
     let count = boundaryValues.values.length
     console.log('count')
     
-    target.innerHTML = `<h2>State: ${boundaryValues.NAME}</h2><h3>${count}</h3>`
+    // this the title HTML for the right side
+    target.innerHTML = `<div id="state">
+                            <h2>State: ${boundaryValues.NAME}</h2>
+                            <h3>Total incidents reported: ${count}</h3>
+                        </div>`
+    
+    // sort by descending
+    let sorted = filtered.sort().reverse()
+
+    // used the sorted data to make the map
+    sorted.forEach(story=>addStory(story.properties,target))
+}
+
+// function to add the story with the target div
+function addStory(story,target){
+    target.innerHTML += `<div class="card">
+                            <h3>Date reported: ${story.theTime}</h3>
+                            <p><strong>Description of the incident: </strong>${story.theStory}</p>
+                            <p>${story.support}</p>
+                            <p><strong>Incident reporting type: </strong>${story.reportingInfo}</p>
+                            <p>${story.authresponse}</p>
+                            <p><strong>Type of report: </strong>${story.reportType}</p>
+                            <p><strong>Reporter's age: </strong>${story.age}</p>
+                            <p><strong>Reporter's gender: </strong>${story.gender}</p>
+                        </div>`
 }

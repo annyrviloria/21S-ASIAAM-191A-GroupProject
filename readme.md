@@ -1,6 +1,6 @@
 # Justicia Migratoria / Migration Justice
 > Our project seeks to bring awareness to the human rights violations migrants and refugees endure while crossing the U.S./Mexico border.
-> Live demo [_here_](https://github.com/annyrviloria/21S-ASIAAM-191A-GroupProject/index.html). <!-- If you have the project hosted somewhere, include the link here. -->
+> Live demo [_here_](https://annyrviloria.github.io/21S-ASIAAM-191A-GroupProject/index.html). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [General Info](#general-information)
