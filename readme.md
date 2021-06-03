@@ -34,7 +34,7 @@
 List the ready features here:
 - Take our survey to report your experience
 - View the experiences of and resources migrants and immigrant rights advocates need
-- Find survey responses and locations of incidents on our map
+- Find survey responses and locations of incidents on our interactive map
 
 
 ## Screenshots
@@ -67,26 +67,26 @@ Project is: in progress
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
+
 
 Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
+- It would be useful for viewers to be able to find stories similar to theirs, or to find incident reports according to demographics like age or gender.
+- It would also be important to highlight the resources that migrants and legal advocates need access to.
 
 To do:
-- Feature to be added 1
-- Feature to be added 2
+- Sorting incident reports by non-geographical factors of interest, such as age or gender
+- Adding a separate page or window of needed resources.
 
 
 ## Acknowledgements
 
 - This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+- This project was based on [Stop AAPI Hate Map](http://www.hatecrimemap.com/covid).
+- Many thanks to... Albert Kochaphum
 
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by Anny Rodriguez Viloria, Alize Magaña, and Andi Min
 
 
 <!-- Optional -->
