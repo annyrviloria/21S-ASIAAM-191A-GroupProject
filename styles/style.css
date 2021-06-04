@@ -78,11 +78,14 @@ header{
 #box1{
     grid-area: box1;
     padding:10px;
+    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
 
 }
 
 #box2{
     grid-area: box2;
+    overflow-y:scroll; /* adds a vertical scroll-bar to this div */
+
 }
 /* use these cards 
 https://www.w3schools.com/howto/howto_css_cards.asp
@@ -109,6 +112,9 @@ https://www.w3schools.com/howto/howto_css_cards.asp
 #state{
     padding:10px;
     text-align: center;
+}
+div.skiptranslate:nth-child(1){
+    display: none;
 }
 
 footer{
