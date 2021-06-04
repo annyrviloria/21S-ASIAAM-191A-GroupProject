@@ -113,6 +113,9 @@ https://www.w3schools.com/howto/howto_css_cards.asp
     padding:10px;
     text-align: center;
 }
+div.skiptranslate:nth-child(1){
+    display: none;
+}
 
 footer{
     grid-area: footer;
